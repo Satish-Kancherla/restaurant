@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-theme-3/20;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+}
+
+.font-rubik {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+}
+
+.nav-link.active {
+    @apply bg-theme-1 font-semibold border-transparent text-white;
+}
+
+.arc-shape {
+    clip-path: ellipse(100% 100% at 00% 0%);
+}
+
+.animate-scale {
+    animation: scale 1s infinite;
+}
+
+.animate-scale2 {
+    animation: scale 1s 0.5s infinite;
+}
+
+@keyframes scale {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 0.1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+
+.print-only {
+    display: none;
+}
+.not-print{
+    display:block
+}
+ @media print {
+    .print-only {
+      display: block !important;
+    }
+    .not-print{
+        display:none !important
+      }
+  
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    header,
+    footer {
+        position: fixed;
+        width: 100%;
+        background-color: white;
+    }
+
+    header {
+        top: 0;
+    }
+
+    footer {
+        bottom: 0;
+    }
+
+    .content {
+        margin-top: 100px;
+        
+        margin-bottom: 100px;
+       
+    }
+} 
+
+/* @media print {
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      height: 100px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+      height: 50px;
+    }
+    .content {
+      padding-top: 120px; 
+      padding-bottom: 70px; 
+      box-sizing: border-box;
+    }
+  } */
+  .page {
+    page-break-before: always; /* Ensure each section starts on a new page */
+  }

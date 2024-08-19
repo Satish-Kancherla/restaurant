@@ -1,0 +1,576 @@
+import React, {
+  startTransition,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
+import { cn } from "../../lib/utils";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import EmployeeDetails from "./EmployeeDetails";
+import Button from "../../components/ui/Button";
+import * as FormElements from "../../components/ui/FormElements";
+import Statutoryinfo from "./Statutoryinfo";
+import Payment from "./Payment";
+import Employeeposition from "./Employeeposition";
+import { useFormValidation } from "../../hooks/useFormValidation";
+import { validate1 } from "./validators";
+import { validate2 } from "./validators";
+import { validate3 } from "./validators";
+import { validate4 } from "./validators";
+import { getUrl } from "../../components/Url";
+import axios from "axios";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+export default function AddEmployee() {
+  const [tabs, setTabs] = useState(1);
+  const [newFormData, setNewFormData] = useState({});
+  const { user } = useAuthContext();
+  const url = getUrl();
+
+  const form1 = useFormValidation(
+    {
+      empSeries: "",
+      probationPeriod: "",
+      empNo: "",
+      confirmDate: "",
+      fname: "",
+      lname: "",
+      email: "",
+      dob: "",
+      mobileNo: "",
+      aadharNo: "",
+      emergencyName: "",
+      gender: "",
+      emergencyNo: "",
+      reportingMgId: "",
+      fathersName: "",
+      status: "",
+      spouseName: "",
+      doj: "",
+      salary: "",
+    },
+    async (values) => {
+      return new Promise(async (resolve, reject) => {
+        const endpoint = "/api/v1/emp/addemployee/empbaiscinfo";
+        try {
+          const response = await fetch(url + endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user?.token}`,
+            },
+            body: JSON.stringify(values),
+          });
+
+          // if (!response.ok) {
+          //   reject(response)
+          //   // throw new Error(`HTTP error! Status: ${response.status}`);
+          // }
+
+          const data = await response.json();
+          setNewFormData(data);
+          console.log(response.status);
+          resolve(response); // Resolve the Promise with true if successful
+        } catch (error) {
+          console.error("Error:", error);
+          reject(false); // Reject the Promise with false if there's an error
+        }
+      });
+    },
+    validate1
+  );
+  const form2 = useFormValidation(
+    {
+      empNo: "",
+      grade: "",
+      costCenter: "",
+      designationId: "",
+      locationId: "",
+      divisionId: "",
+      departmentId: "",
+      projectId: "",
+      projectDate: "",
+      shift: "",
+      // project: "",
+      // isBillable: "",
+      empStatus: "",
+    },
+    async (values) => {
+      return new Promise(async (resolve, reject) => {
+        const endpoint = "/api/v1/emp/addemployee/empposition";
+        try {
+          const response = await fetch(url + endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user?.token}`,
+            },
+            body: JSON.stringify(values),
+          });
+          const data = await response.json();
+          setNewFormData(data);
+          console.log(response);
+          resolve(response); 
+        } catch (error) {
+          console.error("Error:", error);
+          reject(false);
+        }
+      });
+    },
+    validate2
+  );
+  const form3 = useFormValidation(
+    {
+      empNo: "",
+      panNo: "",
+      aadharNo: "",
+      passportNo: "",
+      uanNo: "",
+    },
+    async (values) => {
+      return new Promise(async (resolve, reject) => {
+        const endpoint = "/api/v1/emp/addemployee/empstatutory";
+        try {
+          const response = await fetch(url + endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user?.token}`,
+            },
+            body: JSON.stringify(values),
+          });
+
+          // if (!response.ok) {
+          //   reject(response)
+          //   // throw new Error(`HTTP error! Status: ${response.status}`);
+          // }
+
+          const data = await response.json();
+          setNewFormData(data);
+          console.log(response.status);
+          resolve(response); // Resolve the Promise with true if successful
+        } catch (error) {
+          console.error("Error:", error);
+          reject(false); // Reject the Promise with false if there's an error
+        }
+      });
+    },
+    validate3
+  );
+  const form4 = useFormValidation(
+    {
+      empNo: "",
+      paymentType: "",
+      bankName: "",
+      accountNumber: "",
+      accHolderName: "",
+      ifscCode: "",
+      branchName: "",
+    },
+    // (values) => {
+    //   const endpoint = "/api/v1/emp/addemployee/emppayment";
+    //   axios
+    //     .post(url + endpoint, values, {
+    //       headers: {
+    //         Authorization: `Bearer ${user?.token}`,
+    //       },
+    //     })
+    //     .then((response) => {
+    //       setNewFormData(response.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
+    async (values) => {
+      return new Promise(async (resolve, reject) => {
+        const endpoint = "/api/v1/emp/addemployee/emppayment";
+        try {
+          const response = await fetch(url + endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user?.token}`,
+            },
+            body: JSON.stringify(values),
+          });
+
+          // if (!response.ok) {
+          //   reject(response)
+          //   // throw new Error(`HTTP error! Status: ${response.status}`);
+          // }
+
+          const data = await response.json();
+          setNewFormData(data);
+          console.log(response.status);
+          resolve(response); // Resolve the Promise with true if successful
+        } catch (error) {
+          console.error("Error:", error);
+          reject(false); // Reject the Promise with false if there's an error
+        }
+      });
+    },
+    validate4
+  );
+
+  useEffect(() => {
+    form2.formData.empNo = form1.formData.empNo;
+    form3.formData.empNo = form1.formData.empNo;
+    form4.formData.empNo = form1.formData.empNo;
+  }, [form1.formData.empNo]);
+
+  const selectTab = (newtab) => {
+    startTransition(() => {
+      setTabs(newtab);
+    });
+  };
+
+  const nextTab = async () => {
+    if (tabs === 1) {
+      const okay = await form1.handleSubmit();
+      console.log("op", okay);
+      if (okay) {
+        if (tabs <= 4) {
+          setTabs((prev) => prev + 1);
+        }
+      }
+    }
+    if (tabs === 2) {
+      if (form2.handleSubmit()) {
+        if (tabs <= 4) {
+          setTabs((prev) => prev + 1);
+        }
+      }
+    }
+    if (tabs === 3) {
+      if (form3.handleSubmit()) {
+        if (tabs <= 4) {
+          setTabs((prev) => prev + 1);
+        }
+      }
+    }
+  };
+  const prevTab = () => {
+    if (tabs > 1) {
+      setTabs((prev) => prev - 1);
+    }
+  };
+
+  const [isAccordion1Open, setIsAccordion1Open] = useState(true);
+  const [inputValue1, setInputValue1] = useState("");
+
+  const [isAccordion2Open, setIsAccordion2Open] = useState(false);
+  const [inputValue2, setInputValue2] = useState("");
+
+  const [isAccordion3Open, setIsAccordion3Open] = useState(false);
+  const [inputValue3, setInputValue3] = useState("");
+
+  const [isAccordion4Open, setIsAccordion4Open] = useState(false);
+  const [inputValue4, setInputValue4] = useState("");
+
+  const handleAccordion1Click = () => {
+    setIsAccordion1Open(!isAccordion1Open);
+  };
+
+  const handleInputChange1 = (event) => {
+    setInputValue1(event.target.value);
+    setIsAccordion2Open(true); // Open the next AccordionDetails
+  };
+
+  const handleAccordion2Click = () => {
+    setIsAccordion2Open(!isAccordion2Open);
+  };
+
+  const handleInputChange2 = (event) => {
+    setInputValue2(event.target.value);
+    setIsAccordion3Open(true); // Open the next AccordionDetails
+  };
+
+  const handleAccordion3Click = () => {
+    setIsAccordion3Open(!isAccordion3Open);
+  };
+
+  const handleInputChange3 = (event) => {
+    setInputValue3(event.target.value);
+  };
+  const handleAccordion4Click = () => {
+    setIsAccordion4Open(!isAccordion4Open);
+  };
+
+  const handleInputChange4 = (event) => {
+    setInputValue4(event.target.value);
+  };
+
+  const stopPropagation = (event) => {
+    event.stopPropagation();
+  };
+  return (
+    <div className="" >
+      <div className="overflow-y-auto">
+        <div className="tab-nav w-full relative h-20 flex items-center justify-between ">
+          <div className="absolute h-1 w-full -z-10 "></div>
+          <TabsList className="flex items-center justify-around w-full  ">
+            <TabsTrigger
+              active="bg-green-600"
+              selectTab={selectTab}
+              tab={tabs}
+              tabIndex={1}
+              className={cn(
+                "bg-green-400 hover:bg-opacity-80  rounded-full h-5 w-5 "
+              )}
+            ></TabsTrigger>
+            <TabsTrigger
+              active="bg-green-600"
+              selectTab={selectTab}
+              tab={tabs}
+              tabIndex={2}
+              className={cn(
+                "bg-green-400 hover:bg-opacity-80  rounded-full h-5 w-5 "
+              )}
+            ></TabsTrigger>
+            <TabsTrigger
+              active="bg-green-600"
+              selectTab={selectTab}
+              tab={tabs}
+              tabIndex={3}
+              className={cn(
+                "bg-green-400 hover:bg-opacity-80  rounded-full h-5 w-5 "
+              )}
+            ></TabsTrigger>
+            <TabsTrigger
+              active="bg-green-600"
+              selectTab={selectTab}
+              tab={tabs}
+              tabIndex={4}
+              className={cn(
+                "bg-green-400 hover:bg-opacity-80  rounded-full h-5 w-5 "
+              )}
+            ></TabsTrigger>
+          </TabsList>
+        </div>
+        <div className="w-full bg-white p-4 rounded-lg ">
+          <TabsContent tab={tabs} tabIndex={1}>
+            <EmployeeDetails form={form1} />
+          </TabsContent>
+          <TabsContent tab={tabs} tabIndex={2}>
+            <Employeeposition form={form2} />
+          </TabsContent>
+          <TabsContent tab={tabs} tabIndex={3}>
+            <Statutoryinfo form={form3} />
+          </TabsContent>
+          <TabsContent tab={tabs} tabIndex={4}>
+            <Payment form={form4} />
+          </TabsContent>
+        </div>
+
+        <div className="page-nav flex items-center  gap-2 m-4 ">
+          <Button
+            secondary="true"
+            onClick={() => prevTab()}
+            disabled={tabs == 1}
+            iconleft={<ArrowLeft className="h-5" />}
+          >
+            Previous
+          </Button>
+          <Button
+            onClick={() => nextTab()}
+            disabled={tabs == 4}
+            iconright={<ArrowRight className="h-5" />}
+          >
+            Next
+          </Button>
+          {tabs == 4 && (
+            <Button iconleft={<Check />} onClick={form4.handleSubmit}>
+              Finish
+            </Button>
+          )}
+          <Link to="/dashboard">
+            <Button variant="danger">Cancel</Button>
+          </Link>
+        </div>
+      </div>
+      <div>
+        <Accordion expanded={isAccordion1Open} onClick={handleAccordion1Click}>
+          <AccordionSummary
+            // expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <p className="block tracking-wide text-zinc-600 text-xl font-bold mr-2">
+              Basic Information
+            </p>
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}></Typography>
+          </AccordionSummary>
+          <AccordionDetails onClick={stopPropagation}>
+            <Typography>
+              <EmployeeDetails form={form1}/>
+              <Button
+                onClick={async() => {
+                  const okay = await form1.handleSubmit();
+                  if (okay) {
+                    console.log("form 1 submitted")
+                    handleAccordion2Click()
+                  }
+                }}
+              >
+                Submit & Next
+              </Button>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={isAccordion2Open} onClick={async() => {
+                  const okay = await form1.handleSubmit();
+                  if (okay) {
+                    console.log("form 1 submitted")
+                    handleAccordion2Click()
+                  }
+                }}>
+          <AccordionSummary
+            // expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <p className="block tracking-wide text-zinc-600 text-xl font-bold mr-2">
+              Employee Position
+            </p>
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}></Typography>
+          </AccordionSummary>
+          <AccordionDetails onClick={stopPropagation}>
+            <Typography>
+              <Employeeposition form={form2} />
+              <Button
+                onClick={async() => {
+                  const okay = await form2.handleSubmit();
+                  if (okay) {
+                    console.log("form 2 submitted")
+                    handleAccordion3Click()
+                  }
+                }}
+              >
+                Submit & Next
+              </Button>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={isAccordion3Open} onClick={async() => {
+                  const okay = await form2.handleSubmit();
+                  if (okay) {
+                    console.log("form submitted")
+                    handleAccordion3Click()
+                  }
+                }}>
+          <AccordionSummary
+            // expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3bh-content"
+            id="panel3bh-header"
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <p className="block tracking-wide text-zinc-600 text-xl font-bold mr-2">
+              Statutory Info
+            </p>
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}></Typography>
+          </AccordionSummary>
+          <AccordionDetails onClick={stopPropagation}>
+            <Typography>
+              <Statutoryinfo form={form3} />
+              <Button
+                onClick={async() => {
+                  const okay = await form3.handleSubmit();
+                  if (okay) {
+                    console.log("form 3 submitted")
+                    handleAccordion4Click()
+                  }
+                }}
+              >
+                Submit & Next
+              </Button>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion  expanded={isAccordion4Open} onClick={async() => {
+                  const okay = await form3.handleSubmit();
+                  if (okay) {
+                    console.log("form submitted")
+                    handleAccordion4Click()
+                  }
+                }}>
+          <AccordionSummary
+            // expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel4bh-content"
+            id="panel4bh-header"
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <p className="block tracking-wide text-zinc-600 text-xl font-bold mr-2">
+              Payment
+            </p>
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}></Typography>
+          </AccordionSummary>
+          <AccordionDetails onClick={stopPropagation}>
+            <Typography>
+              <Payment form={form4} />
+              <Button
+                onClick={async() => {
+                  const okay = await form4.handleSubmit();
+                  if (okay) {
+                    console.log("form submitted")
+                  }
+                }}
+              >
+                Finish
+              </Button>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+    </div>
+  );
+}
+
+function TabsList(props) {
+  const { className, children } = props;
+  return (
+    <nav className={cn("", className)} {...props}>
+      <div className="absolute"></div>
+      {children}
+    </nav>
+  );
+}
+
+function TabsTrigger(props) {
+  const { tab, selectTab, tabIndex, icon, active } = props;
+  return (
+    <button
+      onClick={() => selectTab(tabIndex)}
+      className={cn(
+        "p-2 flex items-center justify-center duration-200",
+        props.className,
+        tab === tabIndex && (active || "border-b-blue-500")
+      )}
+    >
+      {icon && icon}
+      {props.children}
+    </button>
+  );
+}
+function TabsContent(props) {
+  const { tab, tabIndex, className } = props;
+  return (
+    tab === tabIndex && (
+      <div className={cn("container", className)} {...props}>
+        {props.children}
+      </div>
+    )
+  );
+}

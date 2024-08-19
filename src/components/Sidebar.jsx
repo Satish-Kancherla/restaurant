@@ -1,0 +1,53 @@
+import React, { startTransition, useCallback, useEffect, useLayoutEffect } from "react";
+import useMediaQuery from "../hooks/useMediaQuery";
+import { cn } from "../lib/utils";
+import { Eye, HandCoins, Home, UserPlus, Album, Calendar } from "lucide-react";
+import { useGlobalContext } from "../contexts/GlobalContext";
+import { Link, NavLink, } from "react-router-dom";
+import acqlogo from "../assets/logo.svg"
+import useLoacationArray from "../hooks/useLoacationArray";
+
+export default function Sidebar() {
+    const { sidebar, setSidebar } = useGlobalContext();
+    const isLargeScreen = useMediaQuery("(min-width:1023px)");
+    const locArray = useLoacationArray()
+
+    useEffect(() => {
+        if (!isLargeScreen) setSidebar(false);
+    }, [isLargeScreen]);
+
+
+    return (
+        <>
+            <div
+                className={cn(
+                    "fixed inset-0 z-30 duration-200  pointer-events-none",
+                    sidebar
+                    && " pointer-events-auto"
+                )}
+                onClick={() => setSidebar(false)}
+            ></div>
+            <div
+                className={cn(
+                    "h-[calc(100vh)] fixed flex bg-white z-30 duration-150 lg:-translate-x-full ",
+                    sidebar && "lg:translate-x-0 shadow-2xl shadow-black/35"
+                )}
+            >
+                <div className="fixed-panel w-60  bg-theme-1 text-white">
+                    <div className=' grid place-items-center my-8 mb-5  logo select-none' >
+                        <img className='h-10 text-start  ' src={acqlogo} alt='' />
+                        <div className="font-semibold">Accentiqa</div>
+                    </div>
+                    <div className="flex flex-col  text-white font-[400] ">
+                        <NavLink to='/dashboard/home' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Home/>Home</NavLink>
+                        <NavLink to='/dashboard/add-employee' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><UserPlus />Add Employee</NavLink>
+                        <NavLink to='/dashboard/payroll' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><HandCoins />Payroll</NavLink>
+                        <NavLink to='/dashboard/view-employee' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Eye/>View Employees</NavLink>
+                        <NavLink to='/dashboard/holiday-list' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Calendar/>Holiday List</NavLink>
+                    </div>
+
+                </div>
+            </div>
+        </>
+    );
+}
