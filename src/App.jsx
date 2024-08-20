@@ -6,8 +6,7 @@ import { useAuthContext } from "./contexts/AuthContext";
 import Signup from "./pages/Auth/Signup";
 import { Loader, Loader2 } from "lucide-react";
 import Loading from "./components/ui/Loading";
-import Profile from "./profile/Profile";
-// import Signup from "./pages/Auth/Signup";
+
 
 function App() {
     const { user, isLoading } = useAuthContext();
@@ -22,21 +21,14 @@ function App() {
 
                     <Route path={'*'} element={<Navigate to='/404' />} />
 
-                    <Route path={"/profile/*"} element={
-                        user
-                            ?
-                            <Profile />
-                            :
-                            <Navigate to="/signin" replace />
-                    } />
                     <Route path={"/dashboard/*"} element={
-                        user
-                            ?
+                        // user
+                        //     ?
                             <Dashboard />
-                            :
-                            <Navigate to="/signin" replace />
+                            // :
+                            // <Navigate to="/signin" replace />
                     } />
-                    <Route path={"/signin"} element={
+                    {/* <Route path={"/signin"} element={
                         user ?
                             <Navigate to="/dashboard" replace />
                             : <Signin />
@@ -45,7 +37,7 @@ function App() {
                         user ?
                             <Navigate to="/dashboard" replace />
                             : <Signup />
-                    } />
+                    } /> */}
 
                 </Routes>
             </div>

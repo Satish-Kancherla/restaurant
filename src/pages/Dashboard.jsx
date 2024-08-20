@@ -2,33 +2,20 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import AddEmployee from './AddEmployee/Index'
+import AddEmployee from './Order/Index'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from '../lib/utils'
-import ViewEmployee from './ViewEmployee/Index'
-import BreakUp from './Payroll/BreakUp'
-import PaySlip from './Payroll/PaySlip'
-import Welcome from './Welcome'
-import EmployeeStatus from './ViewEmployee/EmployeeStatus'
-import Payroll from './Payroll/Index'
+import Welcome from './UserWelcome'
 import Calendar from './Calendar'
-import Certificates from './Certificates/Index'
-import Probation from './Certificates/Probation'
-import EditEmployee from './EditEmployee/EditEmployee'
 import SearchModal from '../components/SearchModal'
 import { useAuthContext } from '../contexts/AuthContext'
-import AdminsAccess from './AdminsAccess'
-import OneTimeAccess from './OneTimeAccess'
-
+import Inventory from './Inventory/Index'
+import Menu from './Menu/Index'
 
 export default function Dashboard() {
     const isLargeScreen = useMediaQuery('(max-width: 1024px)');
     const { user } = useAuthContext();
-    if (user.admin === false)
-        return (
-            <Navigate to="/profile" replace />
-        )
-    else
+   
     return (
         <div className=''>
             <div className="flex ">
@@ -41,14 +28,10 @@ export default function Dashboard() {
                             <Route path='*' element={<Dashboard404 />} />
                             <Route path="/" element={<Navigate to='home' />} />
                             <Route path="/home" element={<Welcome />} />
-                            <Route path='/add-employee' element={<AddEmployee />} />
-                            <Route path='/edit-employee' element={<EditEmployee />} />
-                            <Route path='/view-employee' element={<ViewEmployee />} />
-                            <Route path='/admin-access' element={<AdminsAccess/>} />
+                            <Route path='/orders' element={<AddEmployee />} />
+                            <Route path='/menus' element={<Menu />} />
+                            <Route path='/inventory' element={<Inventory />}/>
                             <Route path='/holiday-list' element={<Calendar/>} />
-                            <Route path='/payroll/*' element={<Payroll />} />
-                            <Route path='/one-time-access' element={<OneTimeAccess />} />
-                            <Route path='/employee-status' element={<EmployeeStatus />} />
                         </Routes>
                     </div>
                 </div>

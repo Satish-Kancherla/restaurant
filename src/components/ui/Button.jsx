@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-theme-2 text-theme-text ",
+        default: "bg-orange-600 text-white ",
         danger:
           "bg-theme-danger/20 text-theme-danger hover:bg-theme-danger/40",
         outline:

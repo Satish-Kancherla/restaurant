@@ -35,22 +35,13 @@ export default function Navbar({ className }) {
                         setSidebar(!sidebar);
                     }}
                 />
-                <div className="text-theme-1 text-xl capitalize flex items-center pl-2">
+                <div className="text-orange-600 text-xl capitalize flex items-center pl-2">
                     {locArray[0]}&nbsp;
                     <ChevronRight /> &nbsp;{locArray[1]?.replace(/-/g, " ")}
                 </div>
             </div>
             <div className="flex items-center gap-4 text-2xl text-zinc-700 box-border mr-2">
-                <Button
-                    variant="link"
-                    onClick={() => {
-                        setIsSearch(true);
-                    }}
-                >
-                    <Search className="w-4 mx-2" /> Search...
-                </Button>
-
-                <Bell className="cursor-pointer" />
+                
                 <div
                     onClick={handleClick}
                     className="cursor-pointer uppercase h-9 w-9 m-1 text-lg bg-orange-700 select-none flex items-center justify-center rounded-full text-white "
@@ -80,20 +71,7 @@ export default function Navbar({ className }) {
                     </div>
 
                     <hr className="my-2" />
-                    <Link to="/profile">
-                        <MenuItem onClick={handleClose}>
-                            <UserRound className="text-theme-text w-5 mr-2 " />
-                            Profile
-                        </MenuItem>
-                    </Link>
-                    {user?.admin && (
-                        <MenuItem>
-                            <Link to="/dashboard/admin-access" className="flex">
-                                <UserCog2 className="text-theme-text w-5 mr-2 cursor-pointer" />
-                                ACL
-                            </Link>
-                        </MenuItem>
-                    )}
+                   
                     <MenuItem
                         onClick={() => {
                             dispatch({ type: "LOGOUT" });
