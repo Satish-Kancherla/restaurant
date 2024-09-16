@@ -1,103 +1,29 @@
 export const validate1 = (values) => {
   const errors = {};
-  //Validation For empSeries
-  //Validation For empSeries
-  if (!values.probationPeriod.trim()) {
-    errors.probationPeriod = "Number is required";
-  }
-  //Validation For empNo
-  if (!values.empNo) {
-    errors.empNo = "Number is required";
-  }
-  //Validation For confirmDate
-  if (!values.confirmDate.trim()) {
-    errors.confirmDate = "Date is required";
-  }
-  //Validation For name
-  if (!values.fname.trim()) {
-    errors.fname = "Name is required";
-  } else if (values.fname.length < 1) {
-    errors.fname = "Name must be at least 1 characters long";
-  }
-  if (!values.lname.trim()) {
-    errors.lname = "Name is required";
-  } else if (values.lname.length < 1) {
-    errors.lname = "Name must be at least 1 characters long";
-  }
-  //Validation For email
-  if (!values.email.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Invalid email address";
-  }
-  //Validation For DOB
-  if (!values.dob.trim()) {
-    errors.dob = "Date Of Birth is required";
+ 
+  if (!values.category.trim()) {
+    errors.category = "Category is required";
   }
 
-  // Validation For mobileNo
-  if (!values.mobileNo.trim()) {
-    errors.mobileNo = "Mobile number is required";
-  } else if (!/^\d{1,10}$/.test(values.mobileNo)) {
-    errors.mobileNo = "Please provide 10 digits";
+  if (!values.itemname) {
+    errors.itemname = "Name is required";
   }
-
-  // validation For aadharNo
-  if (!values.aadharNo.trim()) {
-    errors.aadharNo = "Aadhar number is required";
-  } else if (!/^\d{12}$/.test(values.aadharNo)) {
-    errors.aadharNo = "Invalid Aadhar number";
-  }
-
-  //Validation For emergencyName
-  if (!values.emergencyName.trim()) {
-    errors.emergencyName = "Name is required";
-  } else if (values.emergencyName.length < 3) {
-    errors.emergencyName = "Name must be at least 3 characters long";
-  }
-
-  // validation For gender
-  if (!values.gender) {
-    errors.gender = "Please select a gender";
-  }
-  // Validation For emergencyNo
-  if (!values.emergencyNo.trim()) {
-    errors.emergencyNo = "Mobile number is required";
-  } else if (!/^\d{1,10}$/.test(values.emergencyNo)) {
-    errors.emergencyNo = "Please provide 10 digits";
-  }
-  //Validation For reportingMgId
-  if (!values.reportingMgId) {
-    errors.reportingMgId = "Please select an option";
-  }
-  //Validation For fathersName
-  if (!values.fathersName.trim()) {
-    errors.fathersName = "Name is required";
-  } else if (values.fathersName.length < 3) {
-    errors.fathersName = "Name must be at least 3 characters long";
-  }
-  //Validation For status
-  if (!values.status.trim()) {
-    errors.status = "Please select an option";
-  }
-
-  // //Validation For spouseName
-  // if (!values.spouseName.trim()) {
-  //   errors.spouseName = "Name is required";
-  // } else if (values.spouseName.length < 3) {
-  //   errors.spouseName = "Name must be at least 3 characters long";
+ 
+  // if (!values.notes.trim()) {
+  //   errors.notes = "Note is required";
   // }
 
-  if (!values.salary.trim()) {
-    errors.salary = "Salary is required";
+  if (!values.quantity.trim()) {
+    errors.quantity = "Quantity is required";
+  }
+  //Validation For empNo
+  if (!values.itemname) {
+    errors.itemname = "Name is required";
   }
 
-  //Validation For DOJ
-  if (!values.doj.trim()) {
-    errors.doj = "Date Of Joining is required";
-  }
   return errors;
 };
+
 
 
 

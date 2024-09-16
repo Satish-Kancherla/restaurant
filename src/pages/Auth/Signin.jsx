@@ -16,16 +16,17 @@ export default function Signin() {
         email: "",
         password: "",
     };
+    
     const onSubmit = async (values) => {
         setIsLoading(true);
         await axios
-            .post(url + "/api/v1/auth/signin", formData)
+            .post("http://localhost:5000/api/v1/users/signin", values)
             .then((data) => {
                 localStorage.setItem("user", JSON.stringify(data.data.userpayload));
                 localStorage.setItem("accessToken", data.data.accessToken);
-                localStorage.setItem("refreshToken", data.data.refreshToken);
                 dispatch({ type: "LOGIN", payload: data.data });
                 setIsLoading(false);
+                console.log("123",data)
             })
             .catch((error) => {
                 console.log(error);
@@ -54,7 +55,7 @@ export default function Signin() {
     return (
         <div className=" grid grid-cols-8 md:flex overflow-hidden h-screen">
             <div className="signin-left overflow-hidden h-full md:hidden col-span-5">
-                <svg className="h-full object-cover" viewBox="0 0 748 537" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="h-full object-cover" viewBox="0 0 748 537" fill="none" xmlns="  ">
                     <g clip-path="url(#clip0_172_4)">
                         <rect width="536" height="747" transform="matrix(0 -1 1 0 0.5 536.5)" fill="white" />
                         <path

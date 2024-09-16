@@ -30,27 +30,6 @@ const columns = [
     type: "text",
     width: 100,
   },
-  // {
-  //   field: "isbillable",
-  //   headerName: <b>Project Type</b>,
-  //   type: "text",
-  //   width: 100,
-  //   flex: 0,
-  // },
-  // {
-  //   field: "active",
-  //   headerName: <b>Active</b>,
-  //   type: "text",
-  //   width: 100,
-  //   flex: 0,
-  //   renderCell: (params) => {
-  //     return params?.value === "active" ? (
-  //       <span className="text-theme-success">Yes</span>
-  //     ) : (
-  //       <span className="text-theme-danger">No</span>
-  //     );
-  //   },
-  // },
 ];
 
 const initialRows = [

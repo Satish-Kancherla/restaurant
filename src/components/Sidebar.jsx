@@ -35,8 +35,8 @@ export default function Sidebar() {
             >
                 <div className="fixed-panel w-60  bg-orange-600 text-white">
                     <div className=' grid place-items-center mt-5 mb-5  logo select-none' >
-                        <img className='h-10 text-start' src={acqlogo} alt='' />
-                        {/* <div className="font-semibold">Restaurant</div> */}
+                        {/* <img className='h-10 text-start' src={acqlogo} alt='' /> */}
+                        <div className="font-semibold">Restaurant</div>
                     </div>
                     <div className="flex flex-col  text-white font-[400] ">
                         <NavLink to='/dashboard/home' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Home/>Home</NavLink>

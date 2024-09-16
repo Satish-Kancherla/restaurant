@@ -30,20 +30,41 @@ export default function AuthContextProvider({children}) {
         isLoading:true
     })
 
-    useLayoutEffect(() => {
+    // useLayoutEffect(() => {
 
-        const user = JSON.parse(localStorage.getItem('user'))
-        if (user) {
-            dispatch({ type: 'LOGIN', payload: user })
-        }
+    //     const user = JSON.parse(localStorage.getItem('user'))
+    //     if (user) {
+    //         dispatch({ type: 'LOGIN', payload: user })
+    //     }
 
-        else{
-            dispatch({type:'LOGOUT'})
-        }
+    //     else{
+    //         dispatch({type:'LOGOUT'})
+    //     }
         
-        dispatch({type:'LOADED'})
+    //     dispatch({type:'LOADED'})
 
-    }, [])
+    // }, [])
+
+    useLayoutEffect(() => {
+        const userFromStorage = localStorage.getItem('user');
+        
+        try {
+            // Check if 'user' exists and is not undefined or null
+            const user = JSON.parse(userFromStorage) ? JSON.parse(userFromStorage) : null;
+            
+            if (user) {
+                dispatch({ type: 'LOGIN', payload: user });
+            } else {
+                dispatch({ type: 'LOGOUT' });
+            }
+        } catch (error) {
+            console.error("Error parsing user data:", error);
+            dispatch({ type: 'LOGOUT' });
+        }
+    
+        dispatch({ type: 'LOADED' });
+    }, []);
+    
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>

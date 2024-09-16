@@ -18,20 +18,22 @@ export default function Signup() {
         password: "",
     };
     const onSubmit = async (values) => {
+        console.log("out")
         setIsLoading(true);
         await axios
-            .post(url + "/api/v1/auth/signup", formData)
+            .post("http://localhost:5000/api/v1/users/signup", values)
             .then((data) => {
                 localStorage.setItem("user", JSON.stringify(data.data.userpayload));
                 localStorage.setItem("accessToken", data.data.accessToken);
-                localStorage.setItem("refreshToken", data.data.refreshToken);
                 dispatch({ type: "LOGIN", payload: data.data });
                 setIsLoading(false);
+                console.log("then")
             })
             .catch((error) => {
                 console.log(error.response.data.message);
                 setError(error);
                 setIsLoading(false);
+                console.log("catch")
             });
         return { status: 200 };
     };
@@ -54,7 +56,7 @@ export default function Signup() {
         }
         return errors;
     }
-    const { formData, errors, changeHandle, handleSubmit, cleanup } = useFormValidation(initialState, onSubmit, validate);
+    const { formData, errors, changeHandle, handleSubmit } = useFormValidation(initialState, onSubmit, validate);
 
     return (
         <div className=" grid grid-cols-8 md:flex overflow-hidden h-screen">
@@ -101,25 +103,7 @@ export default function Signup() {
                     </Link>
                 </div>
             </div>
-            <div className="signin-left md:hidden  h-full w-full col-span-5">
-                <svg className=" h-full object-cover" viewBox="0 0 748 537" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_172_4)">
-                        <rect width="536" height="747" transform="matrix(0 -1 1 0 0.5 536.5)" fill="white" />
-                        <path
-                            d="M249.5 83.5C367.5 260.7 205.167 460.833 110.5 538H1L1 189.5L249.5 83.5L180.5 1.5H442.5H747V350.5C661.5 288.167 480.9 131.1 442.5 1.5L249.5 83.5Z"
-                            fill="#B6EA5F"
-                        />
-                        <path d="M250 83.5C367.6 259.5 205 461.167 111 538H747.5V349.5C543.5 196.3 457.667 52.3333 443.5 1L250 83.5Z" fill="#225FB1" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_172_4">
-                            <rect width="536" height="747" fill="white" transform="matrix(0 -1 1 0 0.5 536.5)" />
-                        </clipPath>
-                    </defs>
-                </svg>
-
-                {/* <video className='object-cover w-full h-full' src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e) => e.target.play()} autoPlay={true} /> */}
-            </div>
+          
         </div>
     );
 }

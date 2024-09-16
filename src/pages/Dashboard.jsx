@@ -7,20 +7,16 @@ import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from '../lib/utils'
 import Welcome from './UserWelcome'
 import Calendar from './Calendar'
-import SearchModal from '../components/SearchModal'
-import { useAuthContext } from '../contexts/AuthContext'
 import Inventory from './Inventory/Index'
 import Menu from './Menu/Index'
 
 export default function Dashboard() {
     const isLargeScreen = useMediaQuery('(max-width: 1024px)');
-    const { user } = useAuthContext();
    
     return (
         <div className=''>
             <div className="flex ">
                 <Sidebar />
-                <SearchModal />
                 <div className={cn("routeswrapper  w-full  ", !isLargeScreen && "ml-[240px]")}>
                     <Navbar />
                     <div className="mt-[100px] px-4 pb-4">

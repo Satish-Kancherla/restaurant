@@ -2,8 +2,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export function getUrl() {
-    return import.meta.env.VITE_URL || "";
-    // return 'http://localhost:4000'
+    // return import.meta.env.VITE_URL || "";
+    return 'http://localhost:5000'
 }
 const url = getUrl();
 
@@ -33,7 +33,7 @@ instance.interceptors.response.use(
             }
 
             try {
-                const response = await axios.post(url + "/api/v1/auth/refresh-token", { refreshToken });
+                const response = await axios.post(url + "/api/v1/refresh-token", { refreshToken });
                 const { accessToken } = response.data;
 
                 toast.success("You session was expired, logging back in!");

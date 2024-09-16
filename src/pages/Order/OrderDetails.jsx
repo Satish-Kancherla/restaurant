@@ -35,14 +35,14 @@ const OrderDetails = ({ form, statusInp = true }) => {
                     {statusInp && <FormElements.Select
                         label={<span>Category <span className="text-red-500">*</span></span>}
                         optionsArray={[
-                            { id: "", name: "Select an Option" },
-                            { id: "auto", name: "Automatic" },
-                            { id: "manual", name: "Manual" },
+                            { id: '', title: "Select an Option" },
+                            { value: "Veg", title: "Veg" },
+                            { value: "NonVeg", title: "NonVeg" },
                         ]}
-                        name="empSeries"
-                        value={formData.empSeries}
+                        name="category"
+                        value={formData.category}
                         onChange={changeHandle}
-                        error={errors.empSeries}
+                        error={errors.category}
                     />}
                     {/* <div className="flex items-center gap-2"> */}
 
@@ -50,14 +50,13 @@ const OrderDetails = ({ form, statusInp = true }) => {
                         label={<span>Item Name <span className="text-red-500">*</span></span>}
                         optionsArray={[
                             { id: '', title: "Select an Option" },
-                            { value: "Confirmed", title: "Confirmed" },
-                            { value: "Consultant", title: "Consultant" },
-                            { value: "Probation", title: "Probation" },
+                            { value: "Veg", title: "Veg" },
+                            { value: "NonVeg", title: "NonVeg" },
                         ]}
-                        name="status"
-                        value={formData.status}
+                        name="itemname"
+                        value={formData.itemname}
                         onChange={changeHandle}
-                        error={errors.status}
+                        error={errors.itemname}
                     />
                         
                     {/* </div> */}
@@ -66,36 +65,36 @@ const OrderDetails = ({ form, statusInp = true }) => {
                     <FormElements.Input
                         label={<span>Notes <span className="text-red-500">*</span></span>}
                         type="text"
-                        name="fname"
-                        value={formData.fname}
+                        name="notes"
+                        value={formData.notes}
                         onChange={changeHandle}
-                        error={errors.fname}
+                        error={errors.notes}
                     />
                     <FormElements.Input
                         label={<span>Quantity <span className="text-red-500">*</span></span>}
                         type="text"
-                        name="lname"
-                        value={formData.lname}
+                        name="quantity"
+                        value={formData.quantity}
                         onChange={changeHandle}
-                        error={errors.lname}
+                        error={errors.quantity}
                     />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label={<span>Unit Price <span className="text-red-500">*</span></span>}
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        type="number"
+                        name="unitprice"
+                        value={formData.unitprice}
                         onChange={changeHandle}
-                        error={errors.email}
+                        error={errors.unitprice}
                     />
                     <FormElements.Input
                         label={<span>Total <span className="text-red-500">*</span></span>}
-                        type="date"
-                        name="doj"
-                        value={formData.doj}
+                        type="number"
+                        name="total"
+                        value={formData.total}
                         onChange={changeHandle}
-                        error={errors.doj}
+                        error={errors.total}
                     />
 
                 </div>

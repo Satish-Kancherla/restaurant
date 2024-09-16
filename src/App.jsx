@@ -22,13 +22,13 @@ function App() {
                     <Route path={'*'} element={<Navigate to='/404' />} />
 
                     <Route path={"/dashboard/*"} element={
-                        // user
-                        //     ?
+                        user
+                            ?
                             <Dashboard />
-                            // :
-                            // <Navigate to="/signin" replace />
+                            :
+                            <Navigate to="/signin" replace />
                     } />
-                    {/* <Route path={"/signin"} element={
+                    <Route path={"/signin"} element={
                         user ?
                             <Navigate to="/dashboard" replace />
                             : <Signin />
@@ -37,7 +37,7 @@ function App() {
                         user ?
                             <Navigate to="/dashboard" replace />
                             : <Signup />
-                    } /> */}
+                    } />
 
                 </Routes>
             </div>
