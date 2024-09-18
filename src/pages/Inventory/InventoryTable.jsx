@@ -7,11 +7,11 @@ import toast from "react-hot-toast"; // Notification
 import { instance } from "../../components/Url"; // API handler
 
 const columns = [
-  { field: "itemcode", headerName: <b>Item Code</b>, width: 200 },
-  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200 },
-  { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200 },
-  { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200 },
-  { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 100 },
+  { field: "itemcode", headerName: <b>Item Code</b>, width: 100,flex:0.5 },
+  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.5 },
+  { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200,flex:0.5 },
+  { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200,flex:0.5 },
+  { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 200 },
 ];
 
 export default function InventoryTable() {
@@ -60,13 +60,13 @@ export default function InventoryTable() {
           All Items
         </p>
         <div>
-          <CircleFadingPlus className="cursor-pointer" onClick={handleAddItemClick} />
+          <CircleFadingPlus className="cursor-pointer size-7" onClick={handleAddItemClick} />
         </div>
       </div>
       <DataGrid
         rows={rows}
         checkboxSelection={false}
-        style={{ fontSize: "0.8rem" }}
+        style={{ fontSize: "0.9rem" }}
         columns={columns}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick

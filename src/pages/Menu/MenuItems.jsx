@@ -13,19 +13,19 @@ import toast from "react-hot-toast";
 
 
 const columns = [
-  { field: "itemname", headerName: <b>Item Name</b>,  width: 200,flex:0.5 },
+  { field: "itemname", headerName: <b>Item Name</b>,  width: 200,flex:1.0 },
   {
     field: "type",
     headerName: <b>Type</b>,
     type: "text",
-    width: 150,
+    width: 150,flex:0.5
   },
-  { field: "image", headerName: <b>Image</b>, width: 150 },
+  { field: "image", headerName: <b>Image</b>, width: 150,flex:0.5 },
   {
     field: "price",
     headerName: <b>Price</b>,
     type: "text",
-    width:100,
+    width:100,flex:0.5
     
   },
   {
@@ -36,21 +36,9 @@ const columns = [
   },
 ];
 
-const initialRows = [
-  {
-    id:"1",
-    itemname: "Employee 1",
-    type: "Veg",
-    image: "...",
-    price: "10",
-    status: "Awailable",
-
-  },
-
-];
 
 export default function MenuItems() {
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
 
    // Fetch menu items when the component loads
@@ -103,13 +91,13 @@ export default function MenuItems() {
         All Items
       </p>
       <div>
-      <CircleFadingPlus className="cursor-pointer text-orange-600 size-7" onClick={handleAddItemClick}/> 
+      <CircleFadingPlus className="cursor-pointer text-green-700 size-7" onClick={handleAddItemClick}/> 
       </div>
       </div>
       <DataGrid
         rows={rows}
         checkboxSelection={false}
-        style={{ fontSize: "0.8rem" }}
+        style={{ fontSize: "0.9rem" }}
         columns={columns}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick

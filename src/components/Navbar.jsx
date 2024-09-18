@@ -44,7 +44,7 @@ export default function Navbar({ className }) {
                 
                 <div
                     onClick={handleClick}
-                    className="cursor-pointer uppercase h-9 w-9 m-1 text-lg bg-orange-700 select-none flex items-center justify-center rounded-full text-white "
+                    className="cursor-pointer uppercase h-9 w-9 m-1 text-lg bg-theme-1 select-none flex items-center justify-center rounded-full text-white "
                 >
                     {user &&
                         user?.name?.split(" ").map((str, i) => {
