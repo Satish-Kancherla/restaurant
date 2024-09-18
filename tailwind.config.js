@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        'theme-1':'#225FB1',
+        // 4CAF50, D84315, 1E3A5F, 2E3B4E ,C62828, 455A64, 616161
+        'theme-1':'#2E3B4E',
         'theme-2':'#B6EA5F',
         'theme-3':'#DADADA',
         'theme-success':'#16A34A',

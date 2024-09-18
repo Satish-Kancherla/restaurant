@@ -35,7 +35,7 @@ export default function Navbar({ className }) {
                         setSidebar(!sidebar);
                     }}
                 />
-                <div className="text-orange-600 text-xl capitalize flex items-center pl-2">
+                <div className="text-theme-1 text-xl capitalize flex items-center pl-2">
                     {locArray[0]}&nbsp;
                     <ChevronRight /> &nbsp;{locArray[1]?.replace(/-/g, " ")}
                 </div>

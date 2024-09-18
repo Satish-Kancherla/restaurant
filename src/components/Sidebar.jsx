@@ -33,7 +33,7 @@ export default function Sidebar() {
                     sidebar && "lg:translate-x-0 shadow-2xl shadow-black/35"
                 )}
             >
-                <div className="fixed-panel w-60  bg-orange-600 text-white">
+                <div className="fixed-panel w-60  bg-theme-1 text-white">
                     <div className=' grid place-items-center mt-5 mb-5  logo select-none' >
                         {/* <img className='h-10 text-start' src={acqlogo} alt='' /> */}
                         <div className="font-semibold">Restaurant</div>

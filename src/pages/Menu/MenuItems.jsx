@@ -1,10 +1,14 @@
 import React, {
+  useEffect,
   useState
 } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import * as FormElements from "../../components/ui/FormElements";
 import AddItemDialog from "./AddItemDialog";
 import { CircleFadingPlus, MessageSquarePlusIcon } from "lucide-react";
+import { instance } from "../../components/Url";
+import toast from "react-hot-toast";
+
 // import { SquarePlus } from 'lucide-react';
 
 
@@ -40,6 +44,7 @@ const initialRows = [
     image: "...",
     price: "10",
     status: "Awailable",
+
   },
 
 ];
@@ -47,6 +52,20 @@ const initialRows = [
 export default function MenuItems() {
   const [rows, setRows] = useState(initialRows);
   const [dialogOpen, setDialogOpen] = useState(false);
+
+   // Fetch menu items when the component loads
+   const fetchMenuItems = async () => {
+    try {
+      const response = await instance.get("http://localhost:5000/api/v1/menu");
+      setRows(response.data); // Update state with fetched menu items
+    } catch (error) {
+      toast.error("Failed to load menu items");
+    }
+  };
+
+  useEffect(() => {
+    fetchMenuItems();
+  }, []);
 
   const handleAddItemClick = () => {
     setDialogOpen(true);
@@ -56,9 +75,23 @@ export default function MenuItems() {
     setDialogOpen(false);
   };
 
-  const handleSaveItem = (newItem) => {
-    setRows([...rows, { id: rows.length + 1, ...newItem }]);
-  };
+  // const handleSaveItem = (newItem) => {
+  //   setRows([...rows, { id: rows.length + 1, ...newItem }]);
+  // };
+
+  const handleSaveItem = async (newItem) => {
+    try {
+      await instance.post("http://localhost:5000/api/v1/menu/create", newItem);
+      // toast.success("Menu Item Added Successfully");
+    fetchMenuItems(); // Refresh the data grid after adding a new item
+  } catch (error) {
+    // Log the error in more detail
+    console.error("Error saving item:", error);
+    toast.error("Error adding menu item");
+    }
+    handleDialogClose();
+};
+  
   
   // if (isLoading) {
   //   return <Loading className="py-64" />;

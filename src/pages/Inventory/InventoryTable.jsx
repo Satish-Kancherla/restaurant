@@ -1,74 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import * as FormElements from "../../components/ui/FormElements";
-import AddItemDialog from "./AddInventory";
-import { CircleFadingPlus, MessageSquarePlusIcon } from "lucide-react";
-// import { SquarePlus } from 'lucide-react';
+import AddInventory from "./AddInventory";
+import { CircleFadingPlus } from "lucide-react";
+import toast from "react-hot-toast"; // Notification
+import { instance } from "../../components/Url"; // API handler
 
 const columns = [
   { field: "itemcode", headerName: <b>Item Code</b>, width: 200 },
-  {
-    field: "itemname",
-    headerName: <b>Item Name</b>,
-    type: "text",
-    width: 200,
-  },
-  {
-    field: "unitofmeasure",
-    headerName: <b>Unit Of Measure</b>,
-    type: "text",
-    width: 200,
-  },
-  {
-    field: "availablestock",
-    headerName: <b>Available Stock</b>,
-    type: "text",
-    width: 200,
-  },
-  {
-    field: "reorderlevel",
-    headerName: <b>Reorder Level</b>,
-    type: "text",
-    width: 100,
-  },
-  // {
-  //   field: "isbillable",
-  //   headerName: <b>Project Type</b>,
-  //   type: "text",
-  //   width: 100,
-  //   flex: 0,
-  // },
-  // {
-  //   field: "active",
-  //   headerName: <b>Active</b>,
-  //   type: "text",
-  //   width: 100,
-  //   flex: 0,
-  //   renderCell: (params) => {
-  //     return params?.value === "active" ? (
-  //       <span className="text-theme-success">Yes</span>
-  //     ) : (
-  //       <span className="text-theme-danger">No</span>
-  //     );
-  //   },
-  // },
-];
-
-const initialRows = [
-  {
-    id: "1",
-    itemcode:"1",
-    itemname: "tea",
-    unitofmeasure: "Kg",
-    availablestock: "8",
-    reorderlevel: "2",
-    
-  },
+  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200 },
+  { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200 },
+  { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200 },
+  { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 100 },
 ];
 
 export default function InventoryTable() {
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  // Fetch inventory items when the component loads
+  const fetchInventoryItems = async () => {
+    try {
+      const response = await instance.get("/api/v1/inventory"); // Replace with actual API endpoint
+      setRows(response.data);
+    } catch (error) {
+      toast.error("Failed to load inventory items");
+      console.error("Error fetching inventory items:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchInventoryItems(); // Fetch the data when the component mounts
+  }, []);
 
   const handleAddItemClick = () => {
     setDialogOpen(true);
@@ -78,13 +41,18 @@ export default function InventoryTable() {
     setDialogOpen(false);
   };
 
-  const handleSaveItem = (newItem) => {
-    setRows([...rows, { id: rows.length + 1, ...newItem }]);
+  const handleSaveItem = async (newItem) => {
+    try {
+      await instance.post("/api/v1/inventory/create", newItem); // Replace with actual API endpoint
+      // toast.success("Inventory item added successfully");
+      fetchInventoryItems(); // Refresh data grid
+    } catch (error) {
+      toast.error("Error adding inventory item");
+      console.error("Error saving inventory item:", error);
+    }
+    handleDialogClose();
   };
 
-  // if (isLoading) {
-  //   return <Loading className="py-64" />;
-  // }
   return (
     <div className="w-[calc(100%-20px)]">
       <div className="flex justify-between">
@@ -103,7 +71,7 @@ export default function InventoryTable() {
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
       />
-      <AddItemDialog
+      <AddInventory
         open={dialogOpen}
         handleClose={handleDialogClose}
         handleSave={handleSaveItem}
@@ -111,30 +79,3 @@ export default function InventoryTable() {
     </div>
   );
 }
-
-// export function BasicMenu({ rowData, onDelete, fetchEmp }) {
-//   const [statusdialogOpen, setStatusDialogOpen] = useState(false);
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
-//   const open = Boolean(anchorEl);
-
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-
-//   return (
-//     <div>
-
-//       <StatusDialog
-//         open={statusdialogOpen}
-//         rowData={rowData}
-//         setDialogOpen={setStatusDialogOpen}
-//         fetchEmp={fetchEmp}
-//       />
-//     </div>
-//   );
-// }
