@@ -20,7 +20,7 @@ const columns = [
     type: "text",
     width: 150,flex:0.5
   },
-  { field: "image", headerName: <b>Image</b>, width: 150,flex:0.5 },
+  // { field: "image", headerName: <b>Image</b>, width: 150,flex:0.5 },
   {
     field: "price",
     headerName: <b>Price</b>,
@@ -70,7 +70,7 @@ export default function MenuItems() {
   const handleSaveItem = async (newItem) => {
     try {
       await instance.post("http://localhost:5000/api/v1/menu/create", newItem);
-      // toast.success("Menu Item Added Successfully");
+      toast.success("Menu Item Added Successfully");
     fetchMenuItems(); // Refresh the data grid after adding a new item
   } catch (error) {
     // Log the error in more detail

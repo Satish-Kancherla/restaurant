@@ -9,7 +9,7 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
   const [formData, setFormData] = useState({
     itemname: '',
     type: '',
-    image: '',
+    // image: '',
     price: '',
     status: ''
   });
@@ -26,11 +26,11 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
   const handleSubmit = async () => {
     try {
       await handleSave(formData); // Call the passed save function
-      toast.success("Item added successfully");
+      // toast.success("Item added successfully");
       setFormData({
         itemname: '',
         type: '',
-        image: '',
+        // image: '',
         price: '',
         status: ''
       }); // Reset the form
@@ -64,13 +64,13 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
             />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
-            <FormElements.Input
+            {/* <FormElements.Input
               label={<span>Image URL <span className="text-red-500">*</span></span>}
               type="text"
               name="image"
               value={formData.image}
               onChange={handleChange}
-            />
+            /> */}
             <FormElements.Input
               label={<span>Price <span className="text-red-500">*</span></span>}
               type="number"
@@ -78,15 +78,22 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
               value={formData.price}
               onChange={handleChange}
             />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
-            <FormElements.Input
+             <FormElements.Input
               label={<span>Status <span className="text-red-500">*</span></span>}
               type="text"
               name="status"
               value={formData.status}
               onChange={handleChange}
             />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
+            {/* <FormElements.Input
+              label={<span>Status <span className="text-red-500">*</span></span>}
+              type="text"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+            /> */}
           </div>
         </div>
       </DialogContent>

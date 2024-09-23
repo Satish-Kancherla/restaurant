@@ -11,6 +11,7 @@ import { v4 } from "uuid";
 const OrderDetails = ({ form, statusInp = true }) => {
     const { formData, errors, changeHandle, handleSubmit, setFormData } = form;
     const [menuItems, setMenuItems] = useState([]);
+    const [selectedPrice, setSelectedPrice] = useState("");
     const url = getUrl();
      const [open, setOpen] = useState();
     const [dialogUrl, setDialogUrl] = useState("");
@@ -32,6 +33,32 @@ const OrderDetails = ({ form, statusInp = true }) => {
 
         fetchMenuItems();
     }, []);
+
+    const handleItemChange = (e) => {
+        changeHandle(e); // Continue handling form change
+
+        const selectedItem = menuItems.find((item) => item.itemname === e.target.value);
+        if (selectedItem) {
+            setSelectedPrice(selectedItem.price); // Set price when item is selected
+            setFormData((prevData) => ({
+                ...prevData,
+                price: selectedItem.price, // Automatically update the price field
+                unitprice: selectedItem.price, // Ensure unitprice is set in formData
+            }));
+        } else {
+            setSelectedPrice(""); // Clear price if no item is selected
+        }
+    };
+
+     useEffect(() => {
+        if (formData.price && formData.quantity) {
+            setFormData((prevData) => ({
+                ...prevData,
+                total: String(formData.quantity * formData.price),
+            }));
+        }
+    }, [formData.price, formData.quantity, setFormData]); // Trigger effect when price or quantity changes
+
 
     return (
         <div className="container mx-auto employee-details  ">
@@ -73,7 +100,7 @@ const OrderDetails = ({ form, statusInp = true }) => {
                         ]}
                         name="itemname"
                         value={formData.itemname}
-                        onChange={changeHandle}
+                        onChange={handleItemChange}
                         error={errors.itemname}
                     />
 
@@ -82,7 +109,7 @@ const OrderDetails = ({ form, statusInp = true }) => {
                     <FormElements.Input
                         label={
                             <span>
-                                Notes <span className="text-red-500">*</span>
+                                Notes 
                             </span>
                         }
                         type="text"
@@ -97,7 +124,7 @@ const OrderDetails = ({ form, statusInp = true }) => {
                                 Quantity <span className="text-red-500">*</span>
                             </span>
                         }
-                        type="text"
+                        type="number"
                         name="quantity"
                         value={formData.quantity}
                         onChange={changeHandle}
@@ -108,26 +135,26 @@ const OrderDetails = ({ form, statusInp = true }) => {
                     <FormElements.Input
                         label={
                             <span>
-                                Unit Price <span className="text-red-500">*</span>
+                                Unit Price 
                             </span>
                         }
                         type="number"
                         name="unitprice"
-                        value={formData.unitprice}
+                        value={selectedPrice || formData.unitprice}
                         onChange={changeHandle}
-                        error={errors.unitprice}
+                        readOnly
                     />
                     <FormElements.Input
                         label={
                             <span>
-                                Total <span className="text-red-500">*</span>
+                                Total 
                             </span>
                         }
                         type="number"
                         name="total"
-                        value={formData.total}
+                        value={formData.total || ""}
                         onChange={changeHandle}
-                        error={errors.total}
+                        readOnly
                     />
                 </div>
             </div>

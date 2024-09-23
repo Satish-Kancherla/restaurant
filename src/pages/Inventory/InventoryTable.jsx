@@ -7,7 +7,7 @@ import toast from "react-hot-toast"; // Notification
 import { instance } from "../../components/Url"; // API handler
 
 const columns = [
-  { field: "itemcode", headerName: <b>Item Code</b>, width: 100,flex:0.5 },
+  // { field: "itemcode", headerName: <b>Item Code</b>, width: 100,flex:0.5 },
   { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.5 },
   { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200,flex:0.5 },
   { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200,flex:0.5 },
@@ -44,7 +44,7 @@ export default function InventoryTable() {
   const handleSaveItem = async (newItem) => {
     try {
       await instance.post("/api/v1/inventory/create", newItem); // Replace with actual API endpoint
-      // toast.success("Inventory item added successfully");
+      toast.success("Inventory item added successfully");
       fetchInventoryItems(); // Refresh data grid
     } catch (error) {
       toast.error("Error adding inventory item");
