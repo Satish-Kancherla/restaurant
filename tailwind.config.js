@@ -11,6 +11,7 @@ export default {
         'theme-1':'#1E3A5F',
         'theme-2':'#B6EA5F',
         'theme-3':'#DADADA',
+        'theme-input':"#225FB1",
         'theme-success':'#16A34A',
         'theme-danger':'#b91c1c',
         'theme-text':'#282828',

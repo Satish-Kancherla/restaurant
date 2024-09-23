@@ -28,18 +28,18 @@ export const Input = forwardRef(function Input(props, ref) {
       )}
       <input
         id={inputId}
-        type={props.type || "text"}
+        type={props.type || "text"} 
         ref={ref}
         {...props}
         className={cn(
-          "w-full h-10 p-2 peer bg-transparent border-2  border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-700 focus:text-gray-800 font-rubik font-[350] transition duration-300"
+          "w-full h-10 p-2 peer bg-transparent border-2  border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-700 focus:text-gray-800 font-rubik font-[350] transition duration-300"
 
         )}
       />
       {props.label && (
         <label
           htmlFor={inputId}
-          className="peer-focus:text-theme-1 text-sm text-gray-400 duration-300 select-none"
+          className="peer-focus:text-theme-input text-sm text-gray-400 duration-300 select-none"
         >
           {props.label}
         </label>
@@ -68,14 +68,14 @@ export const Textarea = forwardRef(function Textarea(props, ref) {
         type={props.type || "text"}
         ref={ref}
         className={cn(
-          "w-full p-2 peer bg-transparent border-2  border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-700 focus:text-gray-800 font-rubik font-[350] transition duration-300",props.className
+          "w-full p-2 peer bg-transparent border-2  border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-700 focus:text-gray-800 font-rubik font-[350] transition duration-300",props.className
 
         )}
       />
       {props.label && (
         <label
           htmlFor={inputId}
-          className="peer-focus:text-theme-1 text-sm text-gray-400 duration-300 select-none"
+          className="peer-focus:text-theme-input text-sm text-gray-400 duration-300 select-none"
         >
           {props.label}
         </label>
@@ -99,7 +99,7 @@ export function Select(props) {
           {...props}
           id={selectId}
           className={cn(
-            "w-full bg-theme-1 font-semibold text-[15px] text-theme-text text-opacity-60 focus:text-opacity-100  h-10 p-2 peer bg-transparent border border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300",
+            "w-full bg-theme-input font-semibold text-[15px] text-theme-text text-opacity-60 focus:text-opacity-100  h-10 p-2 peer bg-transparent border border-gray-200 rounded-lg focus:border-theme-input outline-none transition duration-300",
             props.className
           )}
         >
@@ -121,7 +121,7 @@ export function Select(props) {
         {props.label && (
           <label
             htmlFor={selectId}
-            className="peer-focus:text-theme-1 text-gray-400 text-sm duration-300 select-none"
+            className="peer-focus:text-theme-input text-gray-400 text-sm duration-300 select-none"
           >
             {props.label}
           </label>
@@ -194,14 +194,14 @@ export const SearchableSelect = ({
         {props.label && (
           <label
             htmlFor={selectId}
-            className="peer-focus:text-theme-1 text-gray-400 text-sm duration-300 select-none"
+            className="peer-focus:text-theme-input text-gray-400 text-sm duration-300 select-none"
           >
             {props.label}
           </label>
         )}
         <div className=" relative  w-full flex-grow" ref={selectRef}>
           <Button
-            className="w-full h-10 p-2 text-start bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-500 transition duration-300 overflow-hidden active:scale-100 "
+            className="w-full h-10 p-2 text-start bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-500 transition duration-300 overflow-hidden active:scale-100 "
             onClick={() => {
               setIsOpen(!isOpen);
             }}
@@ -222,7 +222,7 @@ export const SearchableSelect = ({
                 onClick={handleClickInput}
                 type="text"
                 value={searchTerm}
-                className="w-full h-10 pl-8 p-2 y-2 peer bg-transparent border-2 border-gray-200 rounded-lg bg-zinc-100 focus:border-theme-1 outline-none text-gray-900 transition duration-300 "
+                className="w-full h-10 pl-8 p-2 y-2 peer bg-transparent border-2 border-gray-200 rounded-lg bg-zinc-100 focus:border-theme-input outline-none text-gray-900 transition duration-300 "
                 onChange={handleSearchChange}
                 placeholder="Search..."
               />
@@ -327,7 +327,7 @@ export const SearchableSelect = ({
 //         )}
 //         <div className="relative w-full flex-grow" ref={selectRef}>
 //           <Button
-//             className="w-full h-10 p-2 text-start bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300 overflow-hidden"
+//             className="w-full h-10 p-2 text-start bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-900 transition duration-300 overflow-hidden"
 //             onClick={() => setIsOpen(!isOpen)}
 //           >
 //             <span className="w-full truncate">
@@ -343,7 +343,7 @@ export const SearchableSelect = ({
 //               <input
 //                 type="text"
 //                 value={searchTerm}
-//                 className="w-full h-10 pl-8 p-2 bg-zinc-100 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300"
+//                 className="w-full h-10 pl-8 p-2 bg-zinc-100 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-900 transition duration-300"
 //                 onChange={handleSearchChange}
 //                 placeholder="Search..."
 //                 onClick={handleClickInput}
@@ -382,7 +382,7 @@ export function Checkbox(props) {
         type="checkbox"
         name={props.name}
         className={cn(
-          " h-4 w-4 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300",
+          " h-4 w-4 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-900 transition duration-300",
           props.className
         )}
         checked={props.value}
@@ -392,7 +392,7 @@ export function Checkbox(props) {
       {props.label && (
         <label
           htmlFor={inputId}
-          className="peer-checked:text-theme-1 text-gray-400 duration-300 select-none"
+          className="peer-checked:text-theme-input text-gray-400 duration-300 select-none"
         >
           {props.label}
         </label>
@@ -413,14 +413,14 @@ export function Radio(props) {
         id={inputId}
         type="radio"
         className={cn(
-          " h-4 w-4 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300",
+          " h-4 w-4 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-input outline-none text-gray-900 transition duration-300",
           props.className
         )}
       />
       {props.label && (
         <label
           htmlFor={inputId}
-          className="peer-checked:text-theme-1 text-xs text-gray-400 duration-300 select-none"
+          className="peer-checked:text-theme-input text-xs text-gray-400 duration-300 select-none"
         >
           {props.label}
         </label>
@@ -432,7 +432,7 @@ export function RadioGroup(props) {
   return (
     <div className=" justify-center  h-10 p-2 pb-5 md:max-w-96 mb-8">
       {props.label && (
-        <div className="peer-checked:text-theme-1 text-sm text-gray-400 duration-300 select-none">
+        <div className="peer-checked:text-theme-input text-sm text-gray-400 duration-300 select-none">
           {props.label}
         </div>
       )}

@@ -1,9 +1,5 @@
 export const validateDialog = (values) => {
   const errors = {};
-
-  if (!values.itemcode.trim()) {
-    errors.itemcode = "Item Code is required";
-  } 
   if (!values.itemname.trim()) {
     errors.itemname = "Item Name is required";
   }
