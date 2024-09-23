@@ -44,7 +44,7 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle className="text-lg font-semibold">Add New Item</DialogTitle>
+      <DialogTitle sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#52525b' }}>Add New Item</DialogTitle>
       <DialogContent>
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-1 gap-5">

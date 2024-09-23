@@ -56,8 +56,8 @@ export default function InventoryTable() {
   return (
     <div className="w-[calc(100%-20px)]">
       <div className="flex justify-between">
-        <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
-          All Items
+        <p className="block tracking-wide text-zinc-600 text-xl font-bold mr-2 mb-4">
+          Inventory Items
         </p>
         <div>
           <CircleFadingPlus className="cursor-pointer size-7" onClick={handleAddItemClick} />

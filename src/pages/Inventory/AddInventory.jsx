@@ -7,7 +7,6 @@ import { instance } from '../../components/Url'; // Assuming you have this for A
 
 export default function AddInventory({ open, handleClose, handleSave }) {
   const [formData, setFormData] = useState({
-    itemcode: '',
     itemname: '',
     unitofmeasure: '',
     availablestock: '',
@@ -21,11 +20,10 @@ export default function AddInventory({ open, handleClose, handleSave }) {
   const handleSubmit = async () => {
     try {
       await handleSave(formData); // Save the new inventory item
-      toast.success("Inventory item added successfully"); // Success toast
+      // toast.success("Inventory item added successfully");
 
       // Reset form data
       setFormData({
-        itemcode: '',
         itemname: '',
         unitofmeasure: '',
         availablestock: '',
@@ -41,17 +39,17 @@ export default function AddInventory({ open, handleClose, handleSave }) {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle className="text-lg font-semibold">Add New Inventory Item</DialogTitle>
+      <DialogTitle  sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#52525b' }}>Add New Inventory Item</DialogTitle>
       <DialogContent>
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
-            <FormElements.Input
+            {/* <FormElements.Input
               label={<span>Item Code <span className="text-red-500">*</span></span>}
               type="text"
               name="itemcode"
               value={formData.itemcode}
               onChange={handleChange}
-            />
+            /> */}
             <FormElements.Input
               label={<span>Item Name <span className="text-red-500">*</span></span>}
               type="text"
@@ -59,15 +57,16 @@ export default function AddInventory({ open, handleClose, handleSave }) {
               value={formData.itemname}
               onChange={handleChange}
             />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
-            <FormElements.Input
+             <FormElements.Input
               label={<span>Unit Of Measure <span className="text-red-500">*</span></span>}
               type="text"
               name="unitofmeasure"
               value={formData.unitofmeasure}
               onChange={handleChange}
             />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
+           
             <FormElements.Input
               label={<span>Available Stock <span className="text-red-500">*</span></span>}
               type="number"
@@ -75,9 +74,7 @@ export default function AddInventory({ open, handleClose, handleSave }) {
               value={formData.availablestock}
               onChange={handleChange}
             />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
-            <FormElements.Input
+             <FormElements.Input
               label={<span>Reorder Level <span className="text-red-500">*</span></span>}
               type="number"
               name="reorderlevel"
@@ -85,6 +82,7 @@ export default function AddInventory({ open, handleClose, handleSave }) {
               onChange={handleChange}
             />
           </div>
+          
         </div>
       </DialogContent>
       <DialogActions>
