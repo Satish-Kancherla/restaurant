@@ -13,26 +13,26 @@ import toast from "react-hot-toast";
 
 
 const columns = [
-  { field: "itemname", headerName: <b>Item Name</b>,  width: 200,flex:1.0 },
+  { field: "itemname", headerName: <b>Item Name</b>,  width: 200,flex:0.7 , sortable: false},
   {
     field: "type",
     headerName: <b>Type</b>,
     type: "text",
-    width: 150,flex:0.5
+    width: 150,flex:0.5, sortable: false
   },
   // { field: "image", headerName: <b>Image</b>, width: 150,flex:0.5 },
   {
     field: "price",
     headerName: <b>Price</b>,
     type: "text",
-    width:100,flex:0.5
+    width:100,flex:0.5, sortable: false
     
   },
   {
     field: "status",
     headerName: <b>Status</b>,
     type: "text",
-    width: 100,
+    width: 150, sortable: false
   },
 ];
 
@@ -101,6 +101,7 @@ export default function MenuItems() {
         columns={columns}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
+        disableColumnMenu
       />
        <AddItemDialog
         open={dialogOpen}

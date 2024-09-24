@@ -8,10 +8,10 @@ import { instance } from "../../components/Url"; // API handler
 
 const columns = [
   // { field: "itemcode", headerName: <b>Item Code</b>, width: 100,flex:0.5 },
-  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.5 },
-  { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200,flex:0.5 },
-  { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200,flex:0.5 },
-  { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 200 },
+  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.7, sortable: false },
+  { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200,flex:0.5, sortable: false },
+  { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200,flex:0.5, sortable: false },
+  { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 150, sortable: false },
 ];
 
 export default function InventoryTable() {
@@ -70,6 +70,7 @@ export default function InventoryTable() {
         columns={columns}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
+        disableColumnMenu
       />
       <AddInventory
         open={dialogOpen}
