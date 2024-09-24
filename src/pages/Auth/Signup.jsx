@@ -59,8 +59,8 @@ export default function Signup() {
     const { formData, errors, changeHandle, handleSubmit } = useFormValidation(initialState, onSubmit, validate);
 
     return (
-        <div className=" grid grid-cols-8 md:flex overflow-hidden h-screen">
-            <div className=" p-8 w-full col-span-3 h-full">
+        <div className=" flex items-center justify-center h-screen bg-white">
+            <div className="my-10 p-8 w-full max-w-md bg-white shadow-2xl rounded-lg ">
                 <div className="title m-2 my-4 text-4xl font-bold text-theme-text">Sign Up</div>
                 <div className="m-2 font-semibold text-zinc-400">Enter your details to sign up!</div>
                 <div className="h-px  m-2 my-3 bg-zinc-200"></div>
@@ -98,7 +98,7 @@ export default function Signup() {
                 </Button>
                 <div className="not-user text-gray-400 m-2 my-3 text-sm">
                     Already a User? &nbsp;
-                    <Link to={"/signin"} className="text-violet-500">
+                    <Link to={"/signin"} className="text-violet-500 underline">
                         Sign In
                     </Link>
                 </div>
