@@ -15,7 +15,7 @@ export default function Dashboard() {
    
     return (
         <div className=''>
-            <div className="flex ">
+            <div className="flex bg-white w-full h-screen">
                 <Sidebar />
                 <div className={cn("routeswrapper  w-full  ", !isLargeScreen && "ml-[240px]")}>
                     <Navbar />

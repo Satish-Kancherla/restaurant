@@ -8,7 +8,11 @@ import { instance } from "../../components/Url"; // API handler
 
 const columns = [
   // { field: "itemcode", headerName: <b>Item Code</b>, width: 100,flex:0.5 },
-  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.7, sortable: false },
+  { field: "itemname", headerName: <b>Item Name</b>, type: "text", width: 200,flex:0.7, sortable: false,
+    cellClassName: (params) =>
+      params.row.availablestock < params.row.reorderlevel * 0.25 ? "text-red-500" : "",
+   },
+
   { field: "unitofmeasure", headerName: <b>Unit Of Measure</b>, type: "text", width: 200,flex:0.5, sortable: false },
   { field: "availablestock", headerName: <b>Available Stock</b>, type: "text", width: 200,flex:0.5, sortable: false },
   { field: "reorderlevel", headerName: <b>Reorder Level</b>, type: "text", width: 150, sortable: false },
@@ -22,7 +26,12 @@ export default function InventoryTable() {
   const fetchInventoryItems = async () => {
     try {
       const response = await instance.get("/api/v1/inventory"); // Replace with actual API endpoint
-      setRows(response.data);
+      const capitalizedData = response.data.map((item) => ({
+        ...item,
+        itemname: item.itemname.charAt(0).toUpperCase() + item.itemname.slice(1),
+    }));
+
+    setRows(capitalizedData); 
     } catch (error) {
       toast.error("Failed to load inventory items");
       console.error("Error fetching inventory items:", error);

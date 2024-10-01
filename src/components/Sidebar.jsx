@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 import { Eye, HandCoins, Home, UserPlus, Album, Calendar, HandPlatterIcon, NotebookPen, NotebookPenIcon, Landmark } from "lucide-react";
 import { useGlobalContext } from "../contexts/GlobalContext";
 import { Link, NavLink, } from "react-router-dom";
-import acqlogo from "../assets/logo2.png"
+import acqlogo from "../assets/logo3.png"
 import useLoacationArray from "../hooks/useLoacationArray";
 
 export default function Sidebar() {
@@ -33,16 +33,16 @@ export default function Sidebar() {
                     sidebar && "lg:translate-x-0 shadow-2xl shadow-black/35"
                 )}
             >
-                <div className="fixed-panel w-60  bg-theme-1 text-white">
-                    <div className=' grid place-items-center mt-5 mb-5  logo select-none' >
-                        {/* <img className='h-10 text-start' src={acqlogo} alt='' /> */}
-                        <div className="font-semibold">Restaurant</div>
+                <div className="fixed-panel w-60  bg-white text-black shadow-xl">
+                    <div className=' grid place-items-center mt-5 mb-5  logo select-none bg-white' >
+                        <img className='h-9 text-start' src={acqlogo} alt='' />
+                        {/* <div className="font-semibold">Restaurant</div> */}
                     </div>
-                    <div className="flex flex-col  text-white font-[400] ">
-                        <NavLink to='/dashboard/home' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Home/>Home</NavLink>
-                        <NavLink to='/dashboard/orders' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><HandPlatterIcon />Orders</NavLink>
-                        <NavLink to='/dashboard/menus' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><NotebookPen />Menu</NavLink>
-                        <NavLink to='/dashboard/inventory' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Landmark />Inventory</NavLink>
+                    <div className="flex flex-col  text-black font-[400] ">
+                        <NavLink to='/dashboard/home' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-gray-200 rounded-xl mx-2 w-11/12 p-3 text-zinc-800 font-semibold tracking-wider")}><Home/>Home</NavLink>
+                        <NavLink to='/dashboard/orders' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-gray-200 rounded-xl mx-2 w-11/12 p-3 text-zinc-800 font-semibold tracking-wider")}><HandPlatterIcon />Orders</NavLink>
+                        <NavLink to='/dashboard/menus' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-gray-200 rounded-xl mx-2 w-11/12 p-3 text-zinc-800 font-semibold tracking-wider")}><NotebookPen />Menu</NavLink>
+                        <NavLink to='/dashboard/inventory' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-gray-200 rounded-xl mx-2 w-11/12 p-3 text-zinc-800 font-semibold tracking-wider")}><Landmark />Inventory</NavLink>
 
                         {/* <NavLink to='/dashboard/payroll' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><HandCoins />Payroll</NavLink> */}
                         {/* <NavLink to='/dashboard/holiday-list' onClick={() => { setSidebar(false) }} className={({ isActive }) => cn("p-4 flex items-start justify-start duration-200 w-full gap-2", isActive && "bg-white text-zinc-800 font-semibold tracking-wider")}><Calendar/>Holiday List</NavLink> */}

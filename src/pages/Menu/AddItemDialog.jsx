@@ -18,11 +18,6 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = () => {
-  //   handleSave(formData);
-  //   handleClose();
-  // };
-
   const handleSubmit = async () => {
     try {
       await handleSave(formData); // Call the passed save function
@@ -55,13 +50,21 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
               value={formData.itemname}
               onChange={handleChange}
             />
-            <FormElements.Input
-              label={<span>Type <span className="text-red-500">*</span></span>}
-              type="text"
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-            />
+            <FormElements.Select
+                            label={
+                                <span>
+                                    Type <span className="text-red-500">*</span>
+                                </span>
+                            }
+                            optionsArray={[
+                                { id: "", title: "Select an Option" },
+                                { value: "Veg", title: "Veg" },
+                                { value: "Non-Veg", title: "Non-Veg" },
+                            ]}
+                            name="type"
+                            value={formData.type}
+                            onChange={handleChange}
+                        />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
             {/* <FormElements.Input
@@ -78,13 +81,13 @@ export default function AddItemDialog({ open, handleClose, handleSave }) {
               value={formData.price}
               onChange={handleChange}
             />
-             <FormElements.Input
+             {/* <FormElements.Input
               label={<span>Status <span className="text-red-500">*</span></span>}
               type="text"
               name="status"
               value={formData.status}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 gap-5">
             {/* <FormElements.Input

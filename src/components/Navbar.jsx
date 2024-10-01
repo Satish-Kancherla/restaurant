@@ -35,8 +35,8 @@ export default function Navbar({ className }) {
                         setSidebar(!sidebar);
                     }}
                 />
-                <div className="text-theme-1 text-xl capitalize flex items-center pl-2">
-                    {locArray[0]}&nbsp;
+                <div className="text-black text-xl capitalize flex items-center pl-2">
+                    {/* {locArray[0]}&nbsp; */}
                     <ChevronRight /> &nbsp;{locArray[1]?.replace(/-/g, " ")}
                 </div>
             </div>
@@ -44,7 +44,7 @@ export default function Navbar({ className }) {
                 
                 <div
                     onClick={handleClick}
-                    className="cursor-pointer uppercase h-9 w-9 m-1 text-lg bg-theme-1 select-none flex items-center justify-center rounded-full text-white "
+                    className="cursor-pointer uppercase h-9 w-9 m-1 text-lg bg-black select-none flex items-center justify-center rounded-full text-white "
                 >
                     {user &&
                         user?.name?.split(" ").map((str, i) => {
@@ -61,13 +61,13 @@ export default function Navbar({ className }) {
                     }}
                 >
                     <div className="flex w-full items-center px-4 ">
-                        <div className="uppercase h-6 w-6 text-xs bg-theme-1 select-none flex items-center justify-center rounded-full text-white">
+                        <div className="uppercase h-6 w-6 text-xs bg-black select-none flex items-center justify-center rounded-full text-white">
                             {user &&
                                 user?.name?.split(" ").map((str, i) => {
                                     if (i < 2) return str[0];
                                 })}
                         </div>
-                        {user && <div className="mx-2 max-w-24 truncate capitalize text-theme-1 font-semibold text-lg">{user.name}</div>}
+                        {user && <div className="mx-2 max-w-24 truncate capitalize text-black font-semibold text-lg">{user.name}</div>}
                     </div>
 
                     <hr className="my-2" />

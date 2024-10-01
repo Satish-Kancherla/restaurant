@@ -74,7 +74,7 @@ const OrderDetails = ({ form, statusInp = true }) => {
                             optionsArray={[
                                 { id: "", title: "Select an Option" },
                                 { value: "Veg", title: "Veg" },
-                                { value: "NonVeg", title: "NonVeg" },
+                                { value: "Non-Veg", title: "Non-Veg" },
                             ]}
                             name="category"
                             value={formData.category}
