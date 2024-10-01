@@ -144,12 +144,11 @@ export function BasicMenu({ rowData, onDelete, handleUpdate }) {
             >
                 {" "}
                 <MenuItem onClick={handleEditClick}>Edit</MenuItem>
-                {/* <MenuItem onClick={() => setAlertDialogOpen(true)} >
-                    Delete
-                </MenuItem> */}
+                
                 <MenuItem className="hover:bg-gray-600">
                     <EditItemDialog open={editDialogOpen} handleClose={() => setEditDialogOpen(false)} rowData={rowData} handleUpdate={handleUpdate} />
                 </MenuItem>
+                <MenuItem>
                 <AlertDialog
                     style={{ justifyContent: "center", cursor: "pointer" }}
                     open={alertDialogOpen}
@@ -158,7 +157,7 @@ export function BasicMenu({ rowData, onDelete, handleUpdate }) {
                         await onDelete();
                         setAlertDialogOpen(false);
                     }}
-                />
+                /></MenuItem>
             </Menu>
         </div>
     );
